@@ -1,0 +1,43 @@
+8522e3a909
+Luy0He6EoM15i7BOn9
+ETFCes3Ig6w092hsX2
+
+
+
+
+apt-get update
+apt-get upgrade
+
+apt-get -y install git
+git clone https://github.com/flyzy2005/ss-fly
+ss-fly/ss-fly.sh -ssr
+ss-fly/ss-fly.sh -bbr
+
+
+curl -sL https://deb.nodesource.com/setup_11.x | bash -
+apt-get install -y nodejs
+apt-get install -y npm
+npm install -g --unsafe-perm node-red
+wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/nodered.service -O /lib/systemd/system/nodered.service
+wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-start -O /usr/bin/node-red-start
+wget https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/node-red-stop -O /usr/bin/node-red-stop
+chmod +x /usr/bin/node-red-st*
+
+nano /lib/systemd/system/nodered.service
+User=root
+Group=root
+WorkingDirectory=/root
+
+systemctl daemon-reload
+systemctl start nodered.service
+systemctl enable nodered.service
+安装 node-red-dashboard  node-red-contrib-edge-trigger
+导入流程
+
+wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+apt-key add mosquitto-repo.gpg.key
+cd /etc/apt/sources.list.d/
+wget http://repo.mosquitto.org/debian/mosquitto-jessie.list
+apt-get update
+apt-get install aptitude
+aptitude install mosquitto
